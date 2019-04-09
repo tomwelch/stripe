@@ -630,6 +630,10 @@ class PaymentForm extends Element
         $multiplePlansAmounts = [];
         $setupFees = [];
 
+        $description = $options['description'] ?? $this->name;
+        $logoUrl = $options['logo'] ?? $logoUrl;
+        $currency = $options['currency'] ?? $currency;
+
         if ($this->enableSubscriptions){
             if ($this->subscriptionType == SubscriptionType::SINGLE_PLAN){
                 if (!$this->enableCustomPlanAmount){
@@ -697,7 +701,7 @@ class PaymentForm extends Element
             'enableShippingAddress' => $this->enableShippingAddress,
             'enableBillingAddress' => $this->enableBillingAddress,
             'stripe' => [
-                'description' => $this->name,
+                'description' => $description,
                 'panelLabel' =>  $this->checkoutButtonText ?? 'Pay {{amount}}',
                 'name' => $this->companyName ?? $info->name,
                 'currency' => $currency,
